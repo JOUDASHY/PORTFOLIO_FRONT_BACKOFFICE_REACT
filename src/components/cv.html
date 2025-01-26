@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Design</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            width: 210mm;
+            height: 297mm;
+            margin: auto;
+        }
+
+        @media print {
+            body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        .container {
+            width: 190mm;
+            height: 277mm;
+            background: white;
+            margin: 10mm auto;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-column {
+            width: 35%;
+            background-color: #4682b4;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .left-column img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .left-column h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .left-column h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+        }
+
+        .contact-info, .languages, .interests {
+            margin-bottom: 20px;
+        }
+
+        .contact-info i, .languages i, .interests i {
+            margin-right: 10px;
+        }
+
+        .right-column {
+    width: 65%;
+    background-color: white;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.8rem; /* Taille de police réduite */
+    line-height: 1.3;  /* Améliore la lisibilité avec un espacement des lignes */
+}
+
+
+        .right-column .section {
+            margin-bottom: 20px;
+        }
+
+        .right-column .section h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .right-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .right-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .right-column ul li i {
+            margin-right: 10px;
+            color: #4682b4;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+        .projets-realises {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .projets-realises ul {
+        flex: 1; /* Permet de répartir les colonnes de manière égale */
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+   
+    /* Pour remplacer les puces par des étoiles */
+.star-list {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.star-list li {
+    position: relative;
+    padding-left: 25px;
+}
+
+.star-list li::before {
+    content: '\2605'; /* Symbole étoile */
+    position: absolute;
+    left: 0;
+    color: gold; /* Couleur des étoiles */
+}
+
+/* Pour remplacer les puces par des carrés */
+.square-list {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.square-list li {
+    position: relative;
+    padding-left: 25px;
+}
+
+.square-list li::before {
+    content: '\25A0'; /* Symbole carré */
+    position: absolute;
+    left: 0;
+    color: #000; /* Couleur des carrés */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <img src="profile.jpg" alt="Profile Picture">
+            <h1>ALITSIRY Eddy Nilsen</h1>
+            <h2>24 ans</h2>
+            <div class="about">
+                <h3 class="section-title">À PROPOS</h3>
+                <p>Je suis étudiant en troisième année à l'ENI. Personne motivée dotée d'une solide éthique professionnelle et d'une capacité à travailler en toute indépendance.</p>
+            </div>
+            <div class="contact-info">
+                <h3 class="section-title">Contact</h3>
+                <p><i class="fas fa-phone"></i> 034 86 555 23</p>
+                <p><i class="fas fa-envelope"></i> alitsiryeddynilsen@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Anosy, Antananarivo</p>
+            </div>
+            <div class="languages">
+                <h3 class="section-title">Langues</h3>
+                <p>Français</p>
+                <p>Anglais</p>
+            </div>
+            <div class="interests">
+                <h3 class="section-title">Centres d'intérêt</h3>
+                <p><i class="fas fa-swimmer"></i> Natation</p>
+                <p><i class="fas fa-basketball-ball"></i> Basketball</p>
+                <p><i class="fas fa-paint-brush"></i> Dessin</p>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+            <div class="section">
+                <h3><i class="fas fa-briefcase"></i> Expériences Professionnelles</h3>
+                <ul class="star-list">
+                    <li><span class="bold">KOLO TV</span> | En tant que stagiaire (Novembre 2023 – Janvier 2024)</li>
+                    <li><span class="bold">Ministère de Fonction Publique</span> | En tant que stagiaire (Septembre 2023 – Novembre 2023)</li>
+                </ul>
+            </div>
+        
+            <div class="section">
+                <h3><i class="fas fa-graduation-cap"></i> Formations</h3>
+                <ul class="star-list">
+                    <li>Troisième année / ENI Fianarantsoa - 2023–2024</li>
+                    <li>Cybersécurité / Orange Digital Fianarantsoa - Février 2023</li>
+                    <li>Cours Français / Centre Reniala Fianarantsoa - 2022–2023</li>
+                    <li>Maintenance et Réseau / Fyhar’soft Fianarantsoa - Décembre 2021</li>
+                    <li>Licence en Topographie / ISTE Fianarantsoa - 2019–2020</li>
+                    <li>Bacc série D / Saint Vincent de Paul Farafangana - 2016–2017</li>
+                </ul>
+            </div>
+        
+            <div class="section">
+                <h3><i class="fas fa-tools"></i> Compétences</h3>
+                <ul class="square-list">
+                    <li>Administration de système Windows Serveur et Linux</li>
+                    <li>Langages de Programmation : JAVA, Python...</li>
+                    <li>Technologies Web : HTML, CSS, JS, PHP...</li>
+                    <li>Administration de Base de données : MySQL et PostgreSQL</li>
+                    <li>Déploiement en ligne : Pythonanywhere, Render, Vercel</li>
+                    <li>Framework : DJANGO, FLASK</li>
+                    <li>Système de sécurité : analyse de trafic, analyse malware, firewall...</li>
+                    <li>Conteneurisation : Docker</li>
+                </ul>
+            </div>
+        
+            <div class="section">
+                <h3><i class="fas fa-project-diagram"></i> Projets Réalisés</h3>
+                <div class="projets-realises">
+                    <ul class="star-list">
+                        <li>Serveur Téléphonie IP : Asterisk</li>
+                        <li>Mini réseaux sociaux : Django & SQLite</li>
+                        <li>Cluster de serveur ISCSI</li>
+                        <li>Haut Disponibilité : Serveur Web et MySQL sous Linux</li>
+                        <li>Gestion (CRUD) : Flask & MySQL, React et NodeJS & MySQL</li>
+                        <li>Mise en place de serveur Mail sous Linux</li>
+                        <li>Gestion de Serveur sous Linux : DNS, DHCP, Proxy, VPN...</li>
+                        <li>Certification SSL d’un site Web sous Linux</li>
+                    </ul>
+                    <ul class="star-list">
+                        <li>Gestion d’étudiant : Django & MySQL</li>
+                        <li>NDB MySQL cluster sous Docker</li>
+                        <li>Mise en œuvre de Dual WAN : Mikrotik, Pfsense</li>
+                        <li>Projet Météo Django</li>
+                        <li>Cluster sous Docker SWARM</li>
+                        <li>Projet réseau sous GNS3 : LACP, routage IP avec des protocoles (RIP, OSPF, ACL...)</li>
+                        <li>Localisation Géographique sous QGIS du SIG</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

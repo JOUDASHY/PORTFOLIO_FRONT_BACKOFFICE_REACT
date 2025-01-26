@@ -1,0 +1,138 @@
+
+  .container-cv {
+    width: 190mm;
+    height: 277mm;
+    background: white;
+    margin: 10mm auto;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .left-column {
+    width: 35%;
+    background-color: #4663b4;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .left-column img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+  }
+  
+  .left-column h1 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .left-column h2 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+  }
+  
+  .contact-info, .languages, .interests {
+    margin-bottom: 20px;
+  }
+  
+  .contact-info i, .languages i, .interests i {
+    margin-right: 10px;
+  }
+  
+  .right-column {
+    margin-top: 20px;
+    width: 65%;
+    background-color: white;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  .right-column .section {
+    margin-bottom: 20px;
+  }
+  
+  .right-column .section h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .right-column ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .right-column ul li {
+    margin-bottom: 10px;
+  }
+  
+  .right-column ul li i {
+    margin-right: 10px;
+    color: #4682b4;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  .projets-realises {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .projets-realises ul {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .star-list {
+    list-style-type: none;
+    padding-left: 10px;
+  }
+  
+  .star-list li {
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .star-list li::before {
+    content: '\2605';
+    position: absolute;
+    left: 0;
+    color: rgb(0, 1, 80);
+  }
+  
+  .square-list {
+    list-style-type: none;
+    padding-left: 10px;
+  }
+  
+  .square-list li {
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .square-list li::before {
+    content: '\25A0';
+    position: absolute;
+    left: 0;
+    color: #000;
+  }
+  
