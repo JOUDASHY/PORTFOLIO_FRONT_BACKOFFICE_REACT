@@ -51,7 +51,7 @@ const Cv = () => {
       // src={profile.image}
       src={
         profile?.image
-          ? `${import.meta.env.VITE_API_BASE_URL}/${profile.image}`
+          ? `${import.meta.env.VITE_API_BASE_URL}${profile?.image }`
           : user_pr
       }
       alt="Profile Picture" />

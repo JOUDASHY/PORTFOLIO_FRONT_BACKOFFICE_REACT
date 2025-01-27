@@ -185,10 +185,10 @@ const Logins = () => {
         </div>
 
         {/* Lien inscription */}
-        <div className="signup">
+        {/* <div className="signup">
           Vous n'avez pas de compte ?{" "}
           <Link to="/register">Inscrivez-vous maintenant</Link>
-        </div>
+        </div> */}
       </div>
     
     </div>

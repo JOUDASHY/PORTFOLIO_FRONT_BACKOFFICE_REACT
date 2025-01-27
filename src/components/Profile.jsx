@@ -384,7 +384,7 @@ const handleChange = (e) => {
         <img
           src={
             selectedUser.profile?.image
-              ? `${import.meta.env.VITE_API_BASE_URL}/${selectedUser.profile.image}`
+              ? `${import.meta.env.VITE_API_BASE_URL}${selectedUser.profile?.image }`
               : user_pr
           }
           alt="Profile"

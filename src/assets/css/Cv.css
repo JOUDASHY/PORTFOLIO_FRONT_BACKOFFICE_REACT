@@ -135,4 +135,66 @@
     left: 0;
     color: #000;
   }
+  /* Masque le bouton d'impression lors de l'impression */
+  @media print {
+    /* Cacher les boutons pour ne pas les imprimer */
+    button {
+      display: none;
+    }
+  
+    /* Définir la taille de la page en portrait */
+    @page {
+      size: A4 portrait;
+      margin: 10mm;
+    }
+  
+    /* S'assurer que le contenu est bien centré */
+    .container-cv {
+      width: 190mm;
+      height: 277mm;
+      background: white;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+      box-shadow: none;  /* Retirer l'ombre pour l'impression */
+      padding: 10mm;
+    }
+  
+    .left-column, .right-column {
+      padding: 15px;
+      font-size: 12px;  /* Ajuster la taille du texte pour une meilleure lisibilité */
+    }
+  
+    .left-column img {
+      width: 120px;  /* Réduire la taille de l'image pour l'impression */
+      height: 120px;
+      border-radius: 50%;
+    }
+  
+    .section-title {
+      font-size: 18px;  /* Réduire la taille des titres */
+    }
+  
+    /* Adapter les sections à l'impression */
+    .contact-info, .languages, .interests {
+      margin-bottom: 10px;
+    }
+  
+    .right-column .section h3 {
+      font-size: 16px;
+    }
+  
+    /* Ajuster les listes pour qu'elles tiennent bien sur la page */
+    .star-list, .square-list {
+      padding-left: 15px;
+    }
+  
+    .star-list li, .square-list li {
+      font-size: 12px;
+    }
+  
+    .projets-realises {
+      display: block; /* Assurer un bon rendu sur une seule colonne */
+    }
+  }
   
