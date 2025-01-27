@@ -10,6 +10,9 @@ export default defineConfig({
   define: {
     global: {},
   },
+  build: {
+    outDir: 'dist', // Le répertoire de sortie pour le build
+  },
   base: '/', // Chemin racine de votre application. Changez-le si vous déployez dans un sous-dossier.
   server: {
     host: '0.0.0.0',  // Écoute sur toutes les interfaces réseau
