@@ -29838,7 +29838,7 @@ Login */
   text-decoration: underline;
 }
 
-.field input[type="submit"] {
+.field .connexion {
   background: #3498db;
   border: none;
   border-radius: 5px;
@@ -29847,6 +29847,7 @@ Login */
   font-weight: 600;
   cursor: pointer;
   padding: 10px;
+  width: 100%;
   transition: background 0.3s ease, transform 0.2s;
 }
 

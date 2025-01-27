@@ -8,23 +8,23 @@ import { useStateContext } from "../contexts/contextprovider";
 // import logo from "../assets/img/logo_unit.png";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ReCAPTCHA from "react-google-recaptcha"; // Importer le composant reCAPTCHA
-
+import { ClipLoader } from 'react-spinners'; 
 const Logins = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false); // État pour vérifier si reCAPTCHA a été vérifié
   const { setUser, setToken } = useStateContext();
+  const [loading, setLoading] = useState(false); // État pour le spinner
 
   // Gestion de la visibilité du mot de passe
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  // Soumission du formulaire de connexion
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  
+
+  const handleSubmit = async () => {
+    setLoading(true); // Afficher le spinner
     const payload = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -63,9 +63,10 @@ const Logins = () => {
           "Impossible de se connecter au serveur. Vérifiez votre connexion."
         );
       }
+    } finally {
+      setLoading(false); // Masquer le spinner
     }
   };
-  
 
 
   // Gestion de la réponse de l'authentification Google
@@ -151,8 +152,14 @@ const Logins = () => {
 
           {/* Bouton Connexion */}
           <div className="field">
-            <input type="submit" value="CONNEXION" />
-          </div>
+  <button disabled={loading} onClick={handleSubmit} className="connexion">
+  {loading ? (
+                          <ClipLoader color="#ffffff" size={20} /> // Spinner ici
+                        ) : (
+                          <> CONNEXION 
+                           </>
+                        )}</button>
+</div>
         </form>
 
         {/* Connexion via réseaux sociaux */}

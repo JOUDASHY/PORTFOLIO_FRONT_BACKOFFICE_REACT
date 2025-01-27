@@ -259,11 +259,13 @@ const Header = ({user,setUser,setToken}) => {
       <i className="ti ti-menu-2"></i>
     </a>
   </li>
+
   <li className="pc-h-item pc-sidebar-popup">
     <a href="#" className="pc-head-link ms-0" id="mobile-collapse">
       <i className="ti ti-menu-2"></i>
     </a>
   </li>
+
   <li className="dropdown pc-h-item">
     <a
       className="pc-head-link dropdown-toggle arrow-none m-0 trig-drp-search"
@@ -273,9 +275,7 @@ const Header = ({user,setUser,setToken}) => {
       aria-haspopup="false"
       aria-expanded="false"
     >
-      <svg className="pc-icon">
-        <use xlinkHref="#custom-search-normal-1"></use>
-      </svg>
+      <i className="ti ti-search"></i>
     </a>
     <div className="dropdown-menu pc-h-dropdown drp-search">
       <form className="px-3 py-2">
@@ -287,21 +287,23 @@ const Header = ({user,setUser,setToken}) => {
       </form>
     </div>
   </li>
+
   {/* New Mail Tab */}
   <li className="pc-h-item ms-1">
-      <NavLink
-        to="/allemails"
-        className={({ isActive }) =>
-          isActive ? "pc-head-link " : "pc-head-link"
-        }
-      >
-        <i className="ti ti-mail"></i>
-        {unansweredCount > 0 && (
-          <span className="badge bg-danger pc-h-badge">{unansweredCount}</span>
-        )}
-      </NavLink>
-    </li>
+    <NavLink
+      to="/allemails"
+      className={({ isActive }) =>
+        isActive ? "pc-head-link " : "pc-head-link"
+      }
+    >
+      <i className="ti ti-mail"></i>
+      {unansweredCount > 0 && (
+        <span className="badge bg-danger pc-h-badge">{unansweredCount}</span>
+      )}
+    </NavLink>
+  </li>
 </ul>
+
 
         </div>
         {/* Mobile Media Block End */}

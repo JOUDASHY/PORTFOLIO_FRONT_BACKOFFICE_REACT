@@ -10,7 +10,7 @@ const TransactionsCard = () => {
     // Fetch the data from your API
     axiosClient.get("/projets/")
       .then(response => {
-        setProjects(response.data);
+        setProjects(response.data.slice(0, 5));
       })
       .catch(error => {
         console.error("Error fetching projects:", error);
