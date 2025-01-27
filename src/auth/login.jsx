@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useStateContext } from "../contexts/contextprovider";
-import { GoogleLogin } from '@react-oauth/google'; // Importer le composant GoogleLogin
+// import { GoogleLogin } from '@react-oauth/google'; // Importer le composant GoogleLogin
 // import logo from "../assets/img/logo_unit.png";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ReCAPTCHA from "react-google-recaptcha"; // Importer le composant reCAPTCHA
