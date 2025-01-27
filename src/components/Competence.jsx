@@ -43,6 +43,7 @@ const resetForm = () => {
     setDescription('');
     setNiveau('');
     setCategorie('');
+    setImage(null);
     setId(null);
     setSelectedCompetence(null);
     Load();
