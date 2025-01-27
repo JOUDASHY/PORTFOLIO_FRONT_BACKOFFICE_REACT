@@ -1,7 +1,7 @@
 
 import { NavLink } from "react-router-dom";
 // import axiosClient from '../axiosClient';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useRef} from 'react';
 import axiosClient from '../axiosClient';
 import { toast, ToastContainer } from 'react-toastify'; // Importer toastify
 import 'react-toastify/dist/ReactToastify.css'; // Importer les styles
@@ -30,10 +30,19 @@ const Header = ({user,setUser,setToken}) => {
   const [isOpenNotif, setIsOpenNotif] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
+  const dropdownRef = useRef(null);
+  let isOpen = false;
 
+  const toggleDropdown = (e) => {
+    e.preventDefault();
+    isOpen = !isOpen; // Change l'état local
+    if (dropdownRef.current) {
+      dropdownRef.current.style.display = isOpen ? "block" : "none"; // Met à jour l'affichage du menu
+    }
+  };
   const toggleDropdownNotif = () => {
     setIsOpenNotif(!isOpenNotif);
-    console.log("Dropdown state:", !isOpenNotif);
+   
   };
   const clearAllNotifications = async () => {
     try {
@@ -309,43 +318,53 @@ const Header = ({user,setUser,setToken}) => {
         {/* Mobile Media Block End */}
         <div className="ms-auto">
           <ul className="list-unstyled">
-    
-            <li className="dropdown pc-h-item">
-        <a
-          className="pc-head-link dropdown-toggle arrow-none me-0"
-          href="#"
-          role="button"
-          aria-haspopup="false"
-          aria-expanded="false"
-        >
-          <svg className="pc-icon">
-            <use xlinkHref="#custom-setting-2"></use>
-          </svg>
+          <li className="dropdown pc-h-item" style={{ position: "relative" }}>
+      <a
+        className="pc-head-link dropdown-toggle arrow-none me-0"
+        href="#"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+        onClick={toggleDropdown}
+      >
+        <i className="ti ti-settings"></i> {/* Icône principale */}
+      </a>
+      <div
+        ref={dropdownRef}
+        className="dropdown-menu dropdown-menu-end pc-h-dropdown"
+        style={{
+          display: "none", // Par défaut, le menu est masqué
+          position: "absolute",
+          top: "100%",
+          right: 0,
+        }}
+      >
+         <NavLink 
+      to="profile" 
+      // className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
+    >
+        <a href="#!" className="dropdown-item">
+          <i className="ti ti-user"></i>
+          <span>My Account</span>
+        </a></NavLink>
+        <a href="#!" className="dropdown-item">
+          <i className="ti ti-settings"></i>
+          <span>Settings</span>
         </a>
-        <div className="dropdown-menu dropdown-menu-end pc-h-dropdown">
-          <a href="#!" className="dropdown-item">
-            <i className="ti ti-user"></i>
-            <span>My Account</span>
-          </a>
-          <a href="#!" className="dropdown-item">
-            <i className="ti ti-settings"></i>
-            <span>Settings</span>
-          </a>
-          <a href="#!" className="dropdown-item">
-            <i className="ti ti-headset"></i>
-            <span>Support</span>
-          </a>
-          <a href="#!" className="dropdown-item">
-            <i className="ti ti-lock"></i>
-            <span>Lock Screen</span>
-          </a>
-          <a href="#!" className="dropdown-item">
-            <i className="ti ti-power"></i>
-            <span>Logout</span>
-          </a>
-        </div>
-      </li>
-
+        <a href="#!" className="dropdown-item">
+          <i className="ti ti-headset"></i>
+          <span>Support</span>
+        </a>
+        <a href="#!" className="dropdown-item">
+          <i className="ti ti-lock"></i>
+          <span>Lock Screen</span>
+        </a>
+        <a href="#!" className="dropdown-item" onClick={handleLogoutClick}>
+          <i className="ti ti-power"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </li>
       {/* Announcement Button */}
       <li className="pc-h-item">
         <a
@@ -378,7 +397,6 @@ const Header = ({user,setUser,setToken}) => {
   </a>
 </li>
 
-
 <li className="dropdown pc-h-item">
   <a
     className="pc-head-link dropdown-toggle arrow-none me-0"
@@ -391,12 +409,10 @@ const Header = ({user,setUser,setToken}) => {
       toggleDropdownNotif();
     }}
   >
-    <svg className="pc-icon">
-      <use xlinkHref="#custom-notification"></use>
-    </svg>
+    <i className="ti ti-bell"></i> {/* Icône de notification */}
     <span className="badge bg-danger pc-h-badge">{unreadCount}</span>
   </a>
-  {isOpenNotif && ( // Affiche uniquement si le dropdown est ouvert
+  {isOpenNotif && (
     <div
       className="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown show"
     >
@@ -417,9 +433,7 @@ const Header = ({user,setUser,setToken}) => {
             <div className="card mb-2" key={notif.id || `notif-${notif.created_at}`}>
               <div className="card-body">
                 <div className="d-flex">
-                  <svg className="pc-icon text-primary">
-                    <use xlinkHref="#custom-layer"></use>
-                  </svg>
+                  <i className="ti ti-layer text-primary"></i> {/* Icône pour chaque notification */}
                   <div className="ms-3">
                     <span className="float-end text-sm text-muted">
                       {new Date(notif.created_at).toLocaleTimeString()}

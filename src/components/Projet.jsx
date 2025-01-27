@@ -434,11 +434,22 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
         </td>
 
         {/* Description du projet */}
-        <td>
-          <p className="text-xs font-weight-bold mb-0">
-            {Projet.description || 'Description non définie'}
-          </p>
-        </td>
+        <td style={{ maxWidth: '200px', padding: '0' }}>
+  <div
+    style={{
+      whiteSpace: 'nowrap',        // Pour ne pas laisser le texte aller à la ligne
+      overflow: 'hidden',          // Cache le texte qui déborde
+      textOverflow: 'ellipsis',    // Affiche "..." si le texte dépasse
+      display: 'block',            // Assure que le div occupe l'espace complet du td
+      width: '100%'                // Assure que le div ne dépasse pas de la cellule
+    }}
+  >
+    <p className="text-xs font-weight-bold mb-0">
+      {Projet.description || 'Description non définie'}
+    </p>
+  </div>
+</td>
+
 
         {/* Technologies utilisées */}
         <td>
