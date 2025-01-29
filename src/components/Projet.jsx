@@ -388,7 +388,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
       
       <div className="header-bar">
   {/* Bouton pour ajouter une Projet */}
-  <button className="btn-create" onClick={handleAddClick}>
+  <button className="btn-create me-2" onClick={handleAddClick}>
     <i className="fas fa-plus"></i> <span className="btn-label">Nouvel Projet</span>
   </button>
   

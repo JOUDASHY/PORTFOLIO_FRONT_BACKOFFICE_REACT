@@ -418,7 +418,7 @@ const filteredCompetences = competences.filter(comp =>
 
           <div className="header-bar">
             {/* Bouton pour ajouter une compétence */}
-            <button className="btn-create" onClick={handleAddClick}>
+            <button className="btn-create me-2" onClick={handleAddClick}>
               <i className="fas fa-plus"></i> <span className="btn-label">Nouvelle compétence</span>
             </button>
 

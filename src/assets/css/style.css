@@ -30733,6 +30733,15 @@ i span {
   padding: 20px;
 }
 
+.btn-label {
+  display: inline; /* Par défaut, le label est visible */
+}
+
+@media (max-width: 768px) {
+  .btn-label {
+    display: none; /* Cache le label sur les petits écrans */
+  }
+}
 
 
 
@@ -31472,6 +31481,20 @@ text-align: right;
 .ml-2 {
   margin-left: 0.5rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

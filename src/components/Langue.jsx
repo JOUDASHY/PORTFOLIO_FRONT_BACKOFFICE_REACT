@@ -293,8 +293,8 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             <h2>Liste des langues</h2>
           </div>
           <div className="header-bar">
-            <button className="btn-create" onClick={handleAddClick}>
-              <i className="fas fa-plus"></i> <span className="btn-label">Nouvelle langue</span>
+            <button className="btn-create me-2" onClick={handleAddClick}>
+              <i className="fas fa-plus"></i> <span className="btn-label ">Nouvelle langue</span>
             </button>
             <div className="search-bar">
               <input
