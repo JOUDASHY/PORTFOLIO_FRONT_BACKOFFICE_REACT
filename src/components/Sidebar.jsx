@@ -271,6 +271,16 @@ const NavigationMenu = () => {
       <span>Formation</span>
     </NavLink>
   </li>
+  <li className="pc-item">
+  <NavLink 
+    to="/facebook" 
+    className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
+  >
+    <i className="fab fa-facebook me-4"></i>  {/* Icone de Facebook */}
+    <span>Facebook</span>
+  </NavLink>
+</li>
+
 </ul>
 
 
