@@ -5,6 +5,7 @@ import GuestLayout from './Components_layout/GuestLayout.jsx';
 import Login from './auth/login.jsx';
 import Register from './auth/register.jsx';
 import AllEmails from './components/AllEmails.jsx';
+import Facebook from './components/Facebook.jsx';
 
 
 import Cv from './components/Cv.jsx';
@@ -59,6 +60,8 @@ const RoutesWithAuth = () => {
      
         <>
           <Route path="AllEmails" element={<AllEmails user={user} />} />
+          <Route path="Facebook" element={<Facebook user={user} />} />
+    
     
    
           <Route path="Formation" element={<Formation user={user} />} />
