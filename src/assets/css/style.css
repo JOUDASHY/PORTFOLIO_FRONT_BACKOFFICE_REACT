@@ -20238,6 +20238,7 @@ pre[class*=language-] > code {
   right: 0;
   z-index: 1025;
   display: flex;
+  padding-left:45px
 }
 .pc-header ul {
   margin-bottom: 0;
@@ -20713,6 +20714,87 @@ pre[class*=language-] > code {
     left: 0;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Cacher le sidebar par défaut en mobile */
+.pc-sidebar {
+  position: fixed;
+  
+
+  z-index: 9999;
+}
+
+.pc-sidebar.open {
+  left: 0;
+}
+
+/* Style du bouton menu */
+.menu-toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: var(--bleu);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.menu-toggle:hover {
+  background: #d67a07;
+}
+
+/* Style du menu */
+.nav-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-menu li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #pc-noti-home > .media:hover {
   margin: -15px;
   padding: 15px;

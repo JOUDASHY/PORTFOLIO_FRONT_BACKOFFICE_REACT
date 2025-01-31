@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'; // Importer les styles
 import { ClipLoader } from 'react-spinners'; // Import du spinner
 import Modal from 'react-modal';
 import Swal from 'sweetalert2';
+import user_pr from "../assets/img/user.png";
 
 const Header = ({user,setUser,setToken}) => {
   const [modalOpen, setModalOpen] = useState(false); 
@@ -252,7 +253,7 @@ const Header = ({user,setUser,setToken}) => {
     fetchEmails();
   }, []); // Exécuter uniquement lors du montage du composant
 
-
+ 
   
 
   return (
@@ -260,20 +261,9 @@ const Header = ({user,setUser,setToken}) => {
        {/* <ToastContainer /> */}
       <div className="header-wrapper">
         {/* Mobile Media Block Start */}
-        <div className="me-auto pc-mob-drp">
-        <ul className="list-unstyled">
-  {/* Menu Collapse Icon */}
-  <li className="pc-h-item pc-sidebar-collapse">
-    <a href="#" className="pc-head-link ms-0" id="sidebar-hide">
-      <i className="ti ti-menu-2"></i>
-    </a>
-  </li>
+        <div className="me-auto pc-mob-drp ">
+        <ul className="list-unstyled ">
 
-  <li className="pc-h-item pc-sidebar-popup">
-    <a href="#" className="pc-head-link ms-0" id="mobile-collapse">
-      <i className="ti ti-menu-2"></i>
-    </a>
-  </li>
 
   <li className="dropdown pc-h-item">
     <a
@@ -468,11 +458,17 @@ const Header = ({user,setUser,setToken}) => {
     data-bs-auto-close="outside"
     aria-expanded="false"
   >
+    
     <img
-      src={`${import.meta.env.VITE_API_BASE_URL}${profile?.image }`}
-      alt="user-avatar"
-      className="user-avtar"
-    />
+  src={
+    profile?.image
+      ? `${import.meta.env.VITE_API_BASE_URL}${profile.image}`
+      : user_pr
+  }
+  alt="user-avatar"
+    className="user-avtar"
+/>
+
   </a>
   <div className="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
     <div className="dropdown-header d-flex align-items-center justify-content-between">
@@ -490,11 +486,16 @@ const Header = ({user,setUser,setToken}) => {
       // className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
     >
       <div className="flex-shrink-0">
-        <img
-          src={`${import.meta.env.VITE_API_BASE_URL}${profile?.image}`}
-          alt="user-avatar"
-          className="user-avtar wid-35"
-        />
+      <img
+  src={
+    profile?.image
+      ? `${import.meta.env.VITE_API_BASE_URL}${profile.image}`
+      : user_pr
+  }
+  alt="user-avatar"
+  className="user-avtar wid-35"
+/>
+
       </div>
       </NavLink>
       <NavLink 

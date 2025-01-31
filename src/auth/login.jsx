@@ -138,16 +138,7 @@ const Logins = () => {
 
      
 
-                {/* ReCAPTCHA */}
-                <div className="mb-3">
-        
-                  <div className="g-recaptcha-container">
-                    <ReCAPTCHA
-                      sitekey="6LdDBY4qAAAAAIDafxFRtMsXNbQpmewzZYNLd46e"
-                      onChange={handleCaptchaChange}
-                    />
-                  </div>
-                </div>
+             
 
 
           {/* Bouton Connexion */}

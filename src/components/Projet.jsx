@@ -18,6 +18,8 @@ const [date_fin, setDate_fin] = useState('');
 const [description, setDescription] = useState('');
 const [type, setType] = useState('');
 const [techno, setTechno] = useState('');
+const [projetlink, setProjetlink] = useState('');
+const [githublink, setGithublink] = useState('');
 // États pour la gestion de la sélection
 const [id, setId] = useState(null); // ID de l'éducation à modifier
 const [selectedProjet, setSelectedProjet] = useState(null); // Éducation sélectionnée pour modification
@@ -97,6 +99,8 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
         setDescription(Projet.description); // Met à jour le nom de l'description
                // Met à jour le type (stage ou professionnel)
         setTechno(Projet.techno);             // Met à jour le rôle
+        setGithublink(Projet.githublink);             // Met à jour le rôle
+        setProjetlink(Projet.projetlink);             // Met à jour le rôle
         setId(Projet.id);                 // Met à jour l'ID de l'expérience
         // setImage(Projet.image);           // Met à jour l'image, si disponible
     }
@@ -116,6 +120,8 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             
             // Si vous avez une image (facultatif)
             // if (image) formData.append('image', image);
+            if (projetlink) formData.append('projetlink', projetlink);
+            if (githublink) formData.append('githublink', githublink);
     
             // Envoi de la requête POST pour créer une nouvelle expérience
             await axiosClient.post('/projets/', formData, {
@@ -147,7 +153,8 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             // if (image instanceof File) {
             //     formData.append('image', image);
             // }
-    
+            if (projetlink) formData.append('projetlink', projetlink);
+            if (githublink) formData.append('githublink', githublink);
             // Envoi de la requête PUT pour mettre à jour l'expérience existante
             await axiosClient.put(`/projets/${id}/`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
@@ -176,6 +183,8 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
         setDescription('');          // Réinitialise le nom de l'description
                 
         setTechno('');                // Réinitialise le rôle
+        setGithublink('');                // Réinitialise le rôle
+        setProjetlink('');                // Réinitialise le rôle
                 // Réinitialise l'image (si applicable)
         setId(null);                // Réinitialise l'ID de l'expérience
         setSelectedProjet(null); // Réinitialise l'expérience sélectionnée
@@ -261,6 +270,31 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
                 />
             </div>
 
+<div className="form-group">
+                <label htmlFor="techno">projetlink</label>
+                <input 
+                    type="url" 
+                    id="projetlink" 
+                    className="form-control" 
+                    placeholder="projetlink" 
+                    value={projetlink} 
+                    onChange={(e) => setProjetlink(e.target.value)} 
+                     
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="techno">githublink</label>
+                <input 
+                    type="url" 
+                    id="githublink" 
+                    className="form-control" 
+                    placeholder="githublink" 
+                    value={githublink} 
+                    onChange={(e) => setGithublink(e.target.value)} 
+                     
+                />
+            </div>
+            
          
 
           
@@ -333,6 +367,30 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
                 />
             </div>
 
+<div className="form-group">
+                <label htmlFor="techno">Lien de projet</label>
+                <input 
+                    type="url" 
+                    id="projetlink" 
+                    className="form-control" 
+                    placeholder="lien" 
+                    value={projetlink} 
+                    onChange={(e) => setProjetlink(e.target.value)} 
+                     
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="techno">Lien github</label>
+                <input 
+                    type="url" 
+                    id="githublink" 
+                    className="form-control" 
+                    placeholder="githublink" 
+                    value={githublink} 
+                    onChange={(e) => setGithublink(e.target.value)} 
+                     
+                />
+            </div>
 
             <div className="modal-footer">
                 <button type="submit" className="btn btn-primary">
@@ -417,6 +475,8 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
       <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
       <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
       <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Techno</th>
+      <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lien</th>
+      <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Github</th>
       <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Galerie</th>
       <th className="text-secondary opacity-7">Action</th>
     </tr>
@@ -455,6 +515,16 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
         <td>
           <p className="text-xs font-weight-bold mb-0">
             {Projet.techno || 'Techno non définie'}
+          </p>
+        </td>
+        <td>
+          <p className="text-xs font-weight-bold mb-0">
+            {Projet.projetlink || '\NA'}
+          </p>
+        </td>
+        <td>
+          <p className="text-xs font-weight-bold mb-0">
+            {Projet.githublink || '\NA'}
           </p>
         </td>
 

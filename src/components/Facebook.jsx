@@ -127,7 +127,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
   <div className="col-12">
     <div className="card mb-4">
       <div className="card-header pb-0">
-      <h2>Liste des Comptes Facebooks</h2>
+      <h2>Liste des Comptes Facebook</h2>
       </div>
       
       <div className="header-bar">
@@ -167,49 +167,64 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
   </thead>
 
   <tbody>
-    {filteredFacebook.length > 0 ? (
-      filteredFacebook.map(Facebook => (
+  {filteredFacebook.length > 0 ? (
+    filteredFacebook.map((Facebook) => {
+      const dateObj = new Date(Facebook.date);
+      const heureObj = new Date(`1970-01-01T${Facebook.heure}`);
+
+      const dateFormattee = dateObj.toLocaleDateString("fr-FR", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      });
+
+      const heureFormatee = heureObj.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+
+      return (
         <tr key={Facebook.id}>
           <td>
             <p className="text-xs font-weight-bold mb-0">
-              {Facebook.email || 'Email non définie'}
+              {Facebook.email || "Email non défini"}
             </p>
           </td>
 
           <td>
             <p className="text-xs font-weight-bold mb-0">
-              {Facebook.password || 'Password non défini'}
+              {Facebook.password || "Password non défini"}
             </p>
           </td>
 
           <td>
             <p className="text-xs font-weight-bold mb-0">
-              {Facebook.date || 'Date de début non définie'}
+              {Facebook.date ? dateFormattee : "Date non définie"}
             </p>
           </td>
 
           <td>
             <p className="text-xs font-weight-bold mb-0">
-              {Facebook.heur || 'Date de fin non définie'}
+              {Facebook.heure ? heureFormatee : "Heure non définie"}
             </p>
           </td>
-
-       
 
           <td className="align-middle">
-          
             <button className="btn btn-danger" onClick={() => openDeleteModal(Facebook)}>
               <i className="fas fa-trash"></i>
             </button>
           </td>
         </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan="6" style={{ textAlign: 'center' }}>Aucun résultat trouvé</td>
-      </tr>
-    )}
-  </tbody>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="6" style={{ textAlign: "center" }}>Aucun résultat trouvé</td>
+    </tr>
+  )}
+</tbody>
+
 </table>
 
 

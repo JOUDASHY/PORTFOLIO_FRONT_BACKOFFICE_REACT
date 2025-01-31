@@ -1,14 +1,51 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axiosClient from '../axiosClient';  
 import Modal from 'react-modal';
 import logo from '../assets/images/logo.png'; // Importez votre logo
+import user_pr from "../assets/img/user.png";
 
 const Sidebar = ({user, setUser, setToken}) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const sidebarRef = useRef(null); // Référence pour le sidebar
 
+  // Vérifie la taille de l'écran en temps réel
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Ferme le sidebar en cliquant à l'extérieur
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    if (isSidebarOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isSidebarOpen]);
   return (
-    <nav className="pc-sidebar">
+    <>
+    {/* Bouton Toggle (Affiché uniquement en mobile) */}
+    {isMobile && (
+      <button
+        className="menu-toggle"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        ☰
+      </button>
+    )}
+
+    {/* Sidebar */}
+    <nav ref={sidebarRef} className={`pc-sidebar ${isSidebarOpen ? "open" : ""}`}>
       <div className="navbar-wrapper">
         <div className="m-header">
           <a href="#" className="b-brand text-primary">
@@ -17,20 +54,20 @@ const Sidebar = ({user, setUser, setToken}) => {
               className="logo_img"
               alt="logo"
               style={{
-                backgroundColor: "#f68c09", // Jaune foncé
-                padding: "10px",            // Optionnel : espace autour de l'image
-                borderRadius:'50%'        // Optionnel : arrondir les bords
+                backgroundColor: "#f68c09",
+                padding: "10px",
+                borderRadius: "50%",
               }}
             />
-          
           </a>
         </div>
         <div className="navbar-content">
-          <UserCard user={user} setUser={setUser} setToken={setToken}/>
-          <NavigationMenu user={user}/>
+          <UserCard user={user} setUser={setUser} setToken={setToken} />
+          <NavigationMenu setIsSidebarOpen={setIsSidebarOpen} />
         </div>
       </div>
     </nav>
+  </>
   );
 };
 
@@ -92,11 +129,16 @@ const UserCard = ({ user, setUser, setToken }) => {
       // className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
     >
           <div className="flex-shrink-0">
-            <img
-              src={`${import.meta.env.VITE_API_BASE_URL}${profile?.image }`}
-              alt="user-image"
-              class="user-avtar wid-45 rounded-circle" 
-            />
+          <img
+  src={
+    profile?.image
+      ? `${import.meta.env.VITE_API_BASE_URL}${profile.image}`
+      : user_pr
+  }
+  alt="user-image"
+  className="user-avtar wid-45 rounded-circle" 
+/>
+
           </div>
           </NavLink>
           <NavLink 
@@ -175,117 +217,38 @@ const UserCard = ({ user, setUser, setToken }) => {
 
 
 
-const NavigationMenu = () => {
+const NavigationMenu = ({ setIsSidebarOpen }) => {
   return (
-<ul className="pc-navbar">
-  <li className="pc-item pc-caption">
-    <label>Navigation</label>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/" 
+    <ul className="pc-navbar">
+     {[
+  { path: "/", icon: "fas fa-home", label: "Accueil" },
+  { path: "/projet", icon: "fas fa-project-diagram", label: "Projet" },
+  { path: "/experience", icon: "fas fa-briefcase", label: "Expérience" },
+  { path: "/education", icon: "fas fa-graduation-cap", label: "Éducation" },
+  { path: "/award", icon: "fas fa-award", label: "Award" },
+  { path: "/competence", icon: "fas fa-cogs", label: "Compétences" },
+  { path: "/cv", icon: "fas fa-eye", label: "Voir CV" },
+  { path: "/Gemini_api", icon: "fas fa-robot", label: "Assistant IA" },
+  { path: "/langue", icon: "fas fa-language", label: "Langue" },
+  { path: "/Formation", icon: "fas fa-chalkboard-teacher", label: "Formation" },
+  { path: "/facebook", icon: "fab fa-facebook", label: "Facebook" } // Ajout de Facebook
+].map((item, index) => (
+  <li className="pc-item" key={index}>
+    <NavLink
+      to={item.path}
       className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
+      onClick={() => setIsSidebarOpen(false)}
     >
-      <i className="fas fa-home me-4"></i>
-      <span>Accueil</span>
+      <i className={`${item.icon} me-4`}></i>
+      <span>{item.label}</span>
     </NavLink>
   </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/projet" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-project-diagram me-4"></i>
-      <span>Projet</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/experience" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-briefcase me-4"></i>
-      <span>Expérience</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/education" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-graduation-cap me-4"></i>
-      <span>Éducation</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/award" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-award me-4"></i>
-      <span>Award</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/competence" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-cogs me-4"></i>
-      <span>Compétences</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/cv" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-eye me-4"></i>
-      <span>Voir CV</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/Gemini_api" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-robot me-4"></i>
-      <span>Assistant IA</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/langue" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-language me-4"></i>
-      <span>Langue</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-    <NavLink 
-      to="/Formation" 
-      className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-    >
-      <i className="fas fa-chalkboard-teacher me-4"></i>
-      <span>Formation</span>
-    </NavLink>
-  </li>
-  <li className="pc-item">
-  <NavLink 
-    to="/facebook" 
-    className={({ isActive }) => `pc-link ${isActive ? "active" : ""}`}
-  >
-    <i className="fab fa-facebook me-4"></i>  {/* Icone de Facebook */}
-    <span>Facebook</span>
-  </NavLink>
-</li>
+))}
 
-</ul>
-
-
+    </ul>
   );
 };
+
 
 const MenuItem = ({ title, icon, link, badge, subMenuItems }) => {
   return (

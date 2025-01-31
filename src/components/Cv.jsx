@@ -3,6 +3,8 @@
 import '../assets/css/Cv.css';
 import axiosClient from '../axiosClient';
 import React, { useState, useEffect } from 'react';
+import user_pr from "../assets/img/user.png";
+
 const Cv = () => {
   const [profile, setProfile] = useState(null);
   const [langues, setLangues] = useState([]);
