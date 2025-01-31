@@ -55,19 +55,29 @@ const resetForm = () => {
 
 // Ajouter une compétence
 async function save(event) {
-    event.preventDefault();
-    try {
-        const newCompetence = { name,image, description, niveau,categorie };
-        console.log('............',newCompetence)
-        await axiosClient.post('/competences/', newCompetence, {
-          headers:{'Content-Type':"multipart/form-data"},});
-        toast.success("Compétence enregistrée avec succès");
-        resetForm();
-    } catch (err) {
-        console.error(err);
-        toast.error("Échec de l'enregistrement de la compétence");
-    }
+  event.preventDefault();
+  try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("niveau", niveau);
+      formData.append("categorie", categorie);
+      formData.append("image", image); // image doit être un objet `File`
+
+      console.log("Données envoyées :", Object.fromEntries(formData.entries())); // Debug
+
+      await axiosClient.post("/competences/", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      toast.success("Compétence enregistrée avec succès");
+      resetForm();
+  } catch (err) {
+      console.error("Erreur Axios :", err.response?.data || err);
+      toast.error("Échec de l'enregistrement de la compétence");
+  }
 }
+
 
 // Mettre à jour une compétence
 async function update(event) {
