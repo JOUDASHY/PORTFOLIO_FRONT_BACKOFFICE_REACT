@@ -68,18 +68,29 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             'Content-Type': 'multipart/form-data',
           },
         });
-        toast('Image ajoutée avec succès');
+        toast.success('Image ajoutée avec succès');
         // Réinitialiser le fichier après l'upload
         setSelectedImage(null);
         setProjetId(null);
         Load();
       } catch (error) {
-        console.error('Erreur lors de l\'ajout de l\'image:', error);
-        toast('Erreur lors de l\'ajout de l\'image');
+        toast.error('Erreur lors de l\'ajout de l\'image:');
+      
       }
     };
 
 
+    const handleDeleteImage = async (imageId) => {
+      try {
+        await axiosClient.delete(`/images/${imageId}/`);
+        toast.success('Image supprimee avec succès');
+        // Mets à jour l'affichage des images après suppression
+        Load();
+      } catch (error) {
+        toast.error("Erreur lors de la suppression de l'image :", error);
+      }
+    };
+    
 
 
 
@@ -321,7 +332,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
     onRequestClose={() => setIsModalOpen(false)}
 >
     <div className="modal-header">
-        <h4 className="modal-title">Modifier l'expérience</h4>
+        <h4 className="modal-title">Modifier l'info</h4>
     </div>
     <div className="modal-body">
         <form onSubmit={update}>
@@ -422,7 +433,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
     onRequestClose={() => setIsDeleteModalOpen(false)}
 >
     <div className="modal-body text-center">
-        <p>Voulez-vous supprimer l'Projet {selectedProjet?.name} ?</p>
+        <p>Voulez-vous supprimer le Projet {selectedProjet?.name} ?</p>
         <div className="modal-footer justify-content-center">
             <button className="btn btn-danger" onClick={() => DeleteProjet(selectedProjet?.id)}>
                 <i className="fas fa-trash"></i> Supprimer
@@ -530,85 +541,97 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
 
         {/* Galerie d'images */}
         <td>
-          <div className="d-flex flex-wrap">
-            {Projet.related_images && Projet.related_images.length > 0 ? (
-              Projet.related_images.map((imageObj, index) => (
-                <img
-                  key={imageObj.id}
-                  src={imageObj.image}
-                  alt={`Image ${index + 1}`}
-                  className="img-fluid rounded-3"
-                  style={{
-                    width: '80px',
-                    height: '80px',
-                    marginRight: '10px',
-                    objectFit: 'cover',
-                  }}
-                />
-              ))
-            ) : (
-              <p className="text-xs text-muted">Aucune image</p>
-            )}
-          </div>
-
-          {/* Formulaire pour ajouter une nouvelle image */}
-          <div className="mt-3 d-flex align-items-center">
+  <div className="d-flex flex-wrap">
+    {Projet.related_images && Projet.related_images.length > 0 ? (
+      Projet.related_images.map((imageObj, index) => (
+        <div key={imageObj.id} className="position-relative" style={{ marginRight: '10px' }}>
+          <img
+            src={imageObj.image}
+            alt={`Image ${index + 1}`}
+            className="img-fluid rounded-3"
+            style={{
+              width: '80px',
+              height: '80px',
+              objectFit: 'cover',
+            }}
+          />
+          {/* Croix rouge pour suppression */}
           <i
-  className="fas fa-images text-primary position-relative"
-  style={{
-    fontSize: '15px',
-    cursor: 'pointer',
-    border: '1px solid #007bff',
-    borderRadius: '50%',
-    padding: '5px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f0f8ff',
-    position: 'relative', // Important pour positionner le "+"
-  }}
-  onClick={() => document.getElementById(`fileInput-${Projet.id}`).click()}
-  title="Ajouter une image"
->
-  {/* Symbole "+" */}
-  <span
-    style={{
-      position: 'absolute',
-      top: '2px',
-      right: '13px',
-      // background: '#007bff',
-      color: '#00000',
-      borderRadius: '50%',
-      width: '20px',
-      height: '20px',
-      fontSize: '14px',
-      fontWeight: 'bold',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      boxShadow: '0 0 3px rgba(0, 0, 0, 0.3)',
-    }}
-  >
-    +
-  </span>
-</i>
+            className="fas fa-times-circle text-danger position-absolute"
+            style={{
+              top: '-5px',
+              right: '-5px',
+              fontSize: '18px',
+              cursor: 'pointer',
+              background: 'white',
+              borderRadius: '50%',
+              boxShadow: '0 0 3px rgba(0, 0, 0, 0.3)',
+            }}
+            onClick={() => handleDeleteImage(imageObj.id)}
+            title="Supprimer l'image"
+          ></i>
+        </div>
+      ))
+    ) : (
+      <p className="text-xs text-muted">Aucune image</p>
+    )}
+  </div>
 
+  {/* Formulaire pour ajouter une nouvelle image */}
+  <div className="mt-3 d-flex align-items-center">
+    <i
+      className="fas fa-images text-primary position-relative"
+      style={{
+        fontSize: '15px',
+        cursor: 'pointer',
+        border: '1px solid #007bff',
+        borderRadius: '50%',
+        padding: '5px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#f0f8ff',
+      }}
+      onClick={() => document.getElementById(`fileInput-${Projet.id}`).click()}
+      title="Ajouter une image"
+    >
+      <span
+        style={{
+          position: 'absolute',
+          top: '2px',
+          right: '13px',
+          color: '#000',
+          borderRadius: '50%',
+          width: '20px',
+          height: '20px',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 0 3px rgba(0, 0, 0, 0.3)',
+        }}
+      >
+        +
+      </span>
+    </i>
 
-            <input
-              id={`fileInput-${Projet.id}`}
-              type="file"
-              className="d-none"
-              onChange={(e) => handleImageChange(e, Projet.id)}
-            />
-            <button
-              className="btn btn-primary btn-sm ms-2"
-              onClick={() => handleImageUpload(Projet.id)}
-              disabled={!selectedImage || projetId !== Projet.id}
-            >
-              Ajouter
-            </button>
-          </div>
-        </td>
+    <input
+      id={`fileInput-${Projet.id}`}
+      type="file"
+      className="d-none"
+      onChange={(e) => handleImageChange(e, Projet.id)}
+    />
+    <button
+      className="btn btn-primary btn-sm ms-2"
+      onClick={() => handleImageUpload(Projet.id)}
+      disabled={!selectedImage || projetId !== Projet.id}
+    >
+      Ajouter
+    </button>
+  </div>
+</td>
+
 
         {/* Moyenne des scores */}
         <td>
