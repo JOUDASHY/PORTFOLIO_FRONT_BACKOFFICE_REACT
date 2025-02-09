@@ -56,17 +56,24 @@ const Header = ({user,setUser,setToken}) => {
   };
   
   useEffect(() => {
-    // Fetch notifications from the API
     axiosClient
       .get("/notifications/")
       .then((response) => {
         const data = response.data;
-        setNotifications(data);
-        // Count unread notifications
-        setUnreadCount(data.filter((notif) => !notif.is_read).length);
+  
+        // Trier par date décroissante (du plus récent au plus ancien)
+        const sortedNotifications = data
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .slice(0, 4); // Prendre uniquement les 4 plus récentes
+  
+        setNotifications(sortedNotifications);
+  
+        // Compter les notifications non lues
+        setUnreadCount(sortedNotifications.filter((notif) => !notif.is_read).length);
       })
       .catch((error) => console.error("Error fetching notifications:", error));
   }, []);
+  
 
   const markAllAsRead = () => {
     setNotifications((prevNotifications) =>
@@ -403,30 +410,32 @@ const Header = ({user,setUser,setToken}) => {
     <span className="badge bg-danger pc-h-badge">{unreadCount}</span>
   </a>
   {isOpenNotif && (
+  <div className="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown show">
+    <div className="dropdown-header d-flex align-items-center justify-content-between">
+      <h5 className="m-0">Notifications</h5>
+      <button onClick={markAllAsRead} className="btn btn-link btn-sm">
+        Mark all read
+      </button>
+    </div>
     <div
-      className="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown show"
+      className="dropdown-body text-wrap header-notification-scroll"
+      style={{ maxHeight: "calc(100vh - 215px)", overflowY: "auto" }}
     >
-      <div className="dropdown-header d-flex align-items-center justify-content-between">
-        <h5 className="m-0">Notifications</h5>
-        <button onClick={markAllAsRead} className="btn btn-link btn-sm">
-          Mark all read
-        </button>
-      </div>
-      <div
-        className="dropdown-body text-wrap header-notification-scroll"
-        style={{ maxHeight: "calc(100vh - 215px)" }}
-      >
-        {notifications.length === 0 ? (
-          <p className="text-muted">No notifications</p>
-        ) : (
-          notifications.map((notif) => (
+      {notifications.length === 0 ? (
+        <p className="text-muted text-center">No notifications</p>
+      ) : (
+        notifications.map((notif) => {
+          const formattedDate = new Date(notif.created_at).toLocaleDateString();
+          const formattedTime = new Date(notif.created_at).toLocaleTimeString();
+
+          return (
             <div className="card mb-2" key={notif.id || `notif-${notif.created_at}`}>
               <div className="card-body">
                 <div className="d-flex">
                   <i className="ti ti-layer text-primary"></i> {/* Icône pour chaque notification */}
                   <div className="ms-3">
                     <span className="float-end text-sm text-muted">
-                      {new Date(notif.created_at).toLocaleTimeString()}
+                      {formattedDate} à {formattedTime}
                     </span>
                     <h5 className="text-body mb-2">{notif.title}</h5>
                     <p>{notif.message}</p>
@@ -434,16 +443,22 @@ const Header = ({user,setUser,setToken}) => {
                 </div>
               </div>
             </div>
-          ))
-        )}
-      </div>
-      <div className="text-center py-2">
-        <button onClick={clearAllNotifications} className="link-danger btn btn-link">
-          Clear all Notifications
-        </button>
-      </div>
+          );
+        })
+      )}
     </div>
-  )}
+    <div className="text-center py-2 d-flex justify-content-between px-3">
+      <button onClick={clearAllNotifications} className="link-danger btn btn-link">
+        Clear all Notifications
+      </button>
+      <NavLink to="/NotificationsList" className="btn btn-primary btn-sm">
+        View all
+      </NavLink>
+    </div>
+  </div>
+)}
+
+
 </li>
 
 
