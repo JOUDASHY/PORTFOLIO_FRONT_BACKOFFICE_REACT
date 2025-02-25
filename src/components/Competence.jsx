@@ -265,11 +265,11 @@ const filteredCompetences = competences.filter(comp =>
             </div>
 
             <div className="modal-footer">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn-blue">
                     <i className="fas fa-plus"></i> Ajouter
                 </button>
                 <button 
-                    className="btn btn-secondary" 
+                    className="btn-jaune" 
                     type="button" 
                     onClick={() => resetForm()}
                 >
@@ -380,11 +380,11 @@ const filteredCompetences = competences.filter(comp =>
             </div>
 
             <div className="modal-footer">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn-blue">
                     <i className="fas fa-save"></i> Sauvegarder les modifications
                 </button>
                 <button 
-                    className="btn btn-secondary" 
+                    className="btn-jaune" 
                     type="button" 
                     onClick={() => resetForm()}
                 >
@@ -407,10 +407,10 @@ const filteredCompetences = competences.filter(comp =>
     <div className="modal-body text-center">
         <p>Voulez-vous supprimer la Competence {selectedCompetence?.name} ?</p>
         <div className="modal-footer justify-content-center">
-            <button className="btn btn-danger" onClick={() => deleteCompetence(selectedCompetence?.id)}>
+            <button className="btn-jaune" onClick={() => deleteCompetence(selectedCompetence?.id)}>
                 <i className="fas fa-trash"></i> Supprimer
             </button>
-            <button className="btn btn-secondary" onClick={() => resetForm()}>
+            <button className="btn-jaune" onClick={() => resetForm()}>
                 <i className="fas fa-times"></i> Annuler
             </button>
         </div>
@@ -496,13 +496,13 @@ const filteredCompetences = competences.filter(comp =>
                         </td>
                         <td className="align-middle">
                           <button
-                            className="btn btn-primary me-2"
+                            className="btn-blue me-2"
                             onClick={() => handleEditClick(competence)}
                           >
                             <i className="fas fa-edit"></i>
                           </button>
                           <button
-                            className="btn btn-danger"
+                            className="btn-jaune"
                             onClick={() => openDeleteModal(competence)}
                           >
                             <i className="fas fa-trash"></i>

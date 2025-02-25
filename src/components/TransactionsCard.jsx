@@ -67,7 +67,7 @@ const TransactionsCard = () => {
     <div className="card-footer">
       <div className="d-grid">
        
-      <NavLink to="/projet" className="btn btn-primary">
+      <NavLink to="/projet" className="btn-blue">
   <span className="text-truncate w-100">
   <i className="ti ti-eye"></i> View all Projects
   </span>

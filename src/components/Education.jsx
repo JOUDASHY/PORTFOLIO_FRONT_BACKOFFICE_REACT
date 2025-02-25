@@ -282,10 +282,10 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             </div>
 
             <div className="modal-footer">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn-blue">
                     <i className="fas fa-plus"></i> Ajouter
                 </button>
-                <button className="btn btn-secondary" type="button" onClick={() => resetForm()}>
+                <button className="btn-jaune" type="button" onClick={() => resetForm()}>
                     <i className="fas fa-times"></i> Annuler
                 </button>
             </div>
@@ -405,11 +405,11 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             </div>
 
             <div className="modal-footer">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn-blue">
                     <i className="fas fa-save"></i> Sauvegarder les modifications
                 </button>
                 <button 
-                    className="btn btn-secondary" 
+                    className="btn-jaune" 
                     type="button" 
                     onClick={() => {
                         resetForm();
@@ -435,10 +435,10 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
     <div className="modal-body text-center">
         <p>Voulez-vous supprimer la education {selectedEducation?.name} ?</p>
         <div className="modal-footer justify-content-center">
-            <button className="btn btn-danger" onClick={() => DeleteEducation(selectedEducation?.id)}>
+            <button className="btn-jaune" onClick={() => DeleteEducation(selectedEducation?.id)}>
                 <i className="fas fa-trash"></i> Supprimer
             </button>
-            <button className="btn btn-secondary" onClick={() => resetForm()}>
+            <button className="btn-jaune" onClick={() => resetForm()}>
                 <i className="fas fa-times"></i> Annuler
             </button>
         </div>
@@ -531,10 +531,10 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
           </td>
 
           <td className="align-middle">
-            <button className="btn btn-primary me-2" onClick={() => handleEditClick(education)}>
+            <button className="btn-blue me-2" onClick={() => handleEditClick(education)}>
               <i className="fas fa-edit"></i>
             </button>
-            <button className="btn btn-danger" onClick={() => openDeleteModal(education)}>
+            <button className="btn-jaune" onClick={() => openDeleteModal(education)}>
               <i className="fas fa-trash"></i>
             </button>
           </td>

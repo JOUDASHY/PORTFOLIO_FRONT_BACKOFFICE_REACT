@@ -110,10 +110,10 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
     <div className="modal-body text-center">
         <p>Voulez-vous supprimer l'Facebook {selectedFacebook?.name} ?</p>
         <div className="modal-footer justify-content-center">
-            <button className="btn btn-danger" onClick={() => DeleteFacebook(selectedFacebook?.id)}>
+            <button className="btn-jaune" onClick={() => DeleteFacebook(selectedFacebook?.id)}>
                 <i className="fas fa-trash"></i> Supprimer
             </button>
-            <button className="btn btn-secondary" onClick={() => resetForm()}>
+            <button className="btn-jaune" onClick={() => resetForm()}>
                 <i className="fas fa-times"></i> Annuler
             </button>
         </div>
@@ -211,7 +211,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
           </td>
 
           <td className="align-middle">
-            <button className="btn btn-danger" onClick={() => openDeleteModal(Facebook)}>
+            <button className="btn-jaune" onClick={() => openDeleteModal(Facebook)}>
               <i className="fas fa-trash"></i>
             </button>
           </td>

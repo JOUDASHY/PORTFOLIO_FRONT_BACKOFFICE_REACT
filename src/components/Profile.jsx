@@ -182,7 +182,7 @@ const handleChange = (e) => {
           </button>
 )}
           <button 
-            className="btn btn-secondary btn-sm ml-2"
+            className="btn-jaune btn-sm ml-2"
             onClick={closeModal} // Fermer le modal sans rien faire
           >
             Non, annuler
@@ -393,7 +393,7 @@ const handleChange = (e) => {
         />
         {userId && userId.toString() === user.id.toString() && (
           <button
-            className="btn btn-primary btn-sm position-absolute bottom-0 start-50 translate-middle-x"
+            className="btn-blue btn-sm position-absolute bottom-0 start-50 translate-middle-x"
             onClick={handleEditClick}
           >
             Edit
@@ -432,7 +432,7 @@ const handleChange = (e) => {
               <button className="btn btn-info btn-sm" onClick={handleEditClick}>
                 <i className="fas fa-edit"></i> Editer mon Profil
               </button>
-              <button className="btn btn-danger btn-sm" onClick={openModal}>
+              <button className="btn-jaune btn-sm" onClick={openModal}>
                 <i className="fas fa-key"></i> Restaurer mot de passe
               </button>
             </>

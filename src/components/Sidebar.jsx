@@ -202,10 +202,10 @@ const UserCard = ({ user, setUser, setToken }) => {
           </div>
 
           <div className="modal-footer">
-            <button className="btn btn-secondary" onClick={handleCancelLogout} disabled={isLoggingOut}>
+            <button className="btn-jaune" onClick={handleCancelLogout} disabled={isLoggingOut}>
               <i className="fas fa-ban"></i> Annuler
             </button>
-            <button className="btn btn-danger" onClick={handleConfirmLogout} disabled={isLoggingOut}>
+            <button className="btn-jaune" onClick={handleConfirmLogout} disabled={isLoggingOut}>
               <i className="fas fa-sign-out-alt"></i> Déconnecter
             </button>
           </div>

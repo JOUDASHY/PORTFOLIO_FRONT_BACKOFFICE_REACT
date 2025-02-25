@@ -451,7 +451,7 @@ const Header = ({user,setUser,setToken}) => {
       <button onClick={clearAllNotifications} className="link-danger btn btn-link">
         Clear all Notifications
       </button>
-      <NavLink to="/NotificationsList" className="btn btn-primary btn-sm">
+      <NavLink to="/NotificationsList" className="btn-blue btn-sm">
         View all
       </NavLink>
     </div>
@@ -632,7 +632,7 @@ const Header = ({user,setUser,setToken}) => {
 
     {/* Logout and Upgrade Section */}
     <div className="d-grid mb-3">
-      <button className="btn btn-primary" onClick={handleLogoutClick}>
+      <button className="btn-blue" onClick={handleLogoutClick}>
         <svg className="pc-icon me-2">
           <use xlinkHref="#custom-logout-1-outline" />
         </svg>
@@ -733,14 +733,14 @@ const Header = ({user,setUser,setToken}) => {
   </div>
   
   <div className="modal-footer">
-    <button onClick={() => resetForm()} className="btn btn-secondary">
+    <button onClick={() => resetForm()} className="btn-jaune">
       X annuler
     </button>
 
     <button
       onClick={handleSubmit} // Remplacer le type="submit" par onClick
       disabled={loading}
-      className="btn btn-primary"
+      className="btn-blue"
     >
       {loading ? (
         <ClipLoader color="#ffffff" size={20} /> // Spinner ici
@@ -776,10 +776,10 @@ const Header = ({user,setUser,setToken}) => {
           </div>
 
           <div className="modal-footer">
-            <button className="btn btn-secondary" onClick={handleCancelLogout} disabled={isLoggingOut}>
+            <button className="btn-jaune" onClick={handleCancelLogout} disabled={isLoggingOut}>
               <i className="fas fa-ban"></i> Annuler
             </button>
-            <button className="btn btn-danger" onClick={handleConfirmLogout} disabled={isLoggingOut}>
+            <button className="btn-jaune" onClick={handleConfirmLogout} disabled={isLoggingOut}>
               <i className="fas fa-sign-out-alt"></i> Déconnecter
             </button>
           </div>
@@ -861,11 +861,11 @@ const Header = ({user,setUser,setToken}) => {
       </div>
 
       <div className="modal-footer">
-        <button className="btn btn-secondary" onClick={handleCancelPWD} disabled={isSubmitting}>
+        <button className="btn-jaune" onClick={handleCancelPWD} disabled={isSubmitting}>
           <i className="fas fa-ban"></i> Annuler
         </button>
         <button
-          className="btn btn-primary"
+          className="btn-blue"
           onClick={handleChangePassword}
           disabled={isSubmitting || message !== ""}
         >

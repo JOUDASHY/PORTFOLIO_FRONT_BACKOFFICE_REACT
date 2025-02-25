@@ -437,7 +437,7 @@ const Dash = () => {
       <div className="d-grid mt-3">
       <NavLink 
   to="/competence" 
-  className="btn btn-primary d-flex align-items-center justify-content-center"
+  className="btn-jaune d-flex align-items-center justify-content-center"
 >
   <i className="ti ti-eye"></i> View all
 </NavLink>

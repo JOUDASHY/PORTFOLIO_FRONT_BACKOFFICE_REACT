@@ -72,7 +72,7 @@ const NotificationsList = () => {
           )}
         </div>
         <div className="card-footer text-center">
-          <button className="btn btn-danger btn-sm" onClick={clearAllNotifications}>
+          <button className="btn-jaune btn-sm" onClick={clearAllNotifications}>
             Clear all notifications
           </button>
         </div>
