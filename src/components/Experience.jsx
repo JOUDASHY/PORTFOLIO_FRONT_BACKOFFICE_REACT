@@ -370,46 +370,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
                 />
             </div>
 
-            
-{/* 
-            <div className="form-group">
-                <label htmlFor="fileInput">Logo ou Image</label>
-                {image ? (
-                    <div className="form-group d-flex align-items-center justify-content-center">
-                        <label htmlFor="fileInput" className="file-input-label image-selected">
-                            <img 
-                                src={image instanceof File ? URL.createObjectURL(image) : `${import.meta.env.VITE_API_BASE_URL}/storage/${image}`} 
-                                alt="Aperçu de l'image" 
-                                className="image-preview"
-                            />
-                            <input 
-                                type="file" 
-                                id="fileInput" 
-                                className="form-control-file" 
-                                onChange={(e) => setImage(e.target.files[0])} 
-                            />
-                        </label>
-                    </div>
-                ) : (
-                    <div className="form-group d-flex align-items-center justify-content-center">
-                        <label htmlFor="fileInput" className="file-input-label">
-                            <span className="icon">+</span>
-                            <small>PNG, JPG, GIF jusqu'à 10MB</small>
-                            <input 
-                                type="file" 
-                                id="fileInput" 
-                                className="form-control-file" 
-                                onChange={(e) => setImage(e.target.files[0])} 
-                            />
-                        </label>
-                    </div>
-                )}
-            </div> */}
-
-           
-        </form>
-    </div>
-    <div className="modal-footer">
+            <div className="modal-footer">
                 <button type="submit" className="btn-blue">
                     <i className="fas fa-save"></i> Sauvegarder les modifications
                 </button>
@@ -424,7 +385,10 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
                     <i className="fas fa-times"></i> Annuler
                 </button>
             </div>
+        </form>
+    </div>
 </Modal>
+
 
 
 
