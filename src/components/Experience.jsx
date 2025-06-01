@@ -19,6 +19,7 @@ const [date_fin, setDate_fin] = useState('');
 const [entreprise, setEntreprise] = useState('');
 const [type, setType] = useState('');
 const [role, setRole] = useState('');
+const [description, setDescription] = useState(''); // Ajouter cet état
 // États pour la gestion de la sélection
 const [id, setId] = useState(null); // ID de l'éducation à modifier
 const [selectedExperience, setSelectedExperience] = useState(null); // Éducation sélectionnée pour modification
@@ -62,6 +63,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
         setEntreprise(experience.entreprise); // Met à jour le nom de l'entreprise
         setType(experience.type);             // Met à jour le type (stage ou professionnel)
         setRole(experience.role);             // Met à jour le rôle
+        setDescription(experience.description); // Ajouter ceci
         setId(experience.id);                 // Met à jour l'ID de l'expérience
         // setImage(experience.image);           // Met à jour l'image, si disponible
     }
@@ -78,6 +80,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             formData.append('entreprise', entreprise); // Nouvelle variable pour l'entreprise
             formData.append('type', type); // Nouvelle variable pour le type (stage ou professionnel)
             formData.append('role', role); // Nouvelle variable pour le rôle
+            formData.append('description', description); // Ajouter la description
             
             // Si vous avez une image (facultatif)
             // if (image) formData.append('image', image);
@@ -107,6 +110,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             formData.append('entreprise', entreprise); // Nouvelle variable pour l'entreprise
             formData.append('type', type); // Nouvelle variable pour le type (stage ou professionnel)
             formData.append('role', role); // Nouvelle variable pour le rôle
+            formData.append('description', description); // Ajouter la description
     
             // Si vous avez une image (facultatif)
             // if (image instanceof File) {
@@ -141,7 +145,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
         setEntreprise('');          // Réinitialise le nom de l'entreprise
         setType('');                // Réinitialise le type (stage ou professionnel)
         setRole('');                // Réinitialise le rôle
-        // setImage(null);             // Réinitialise l'image (si applicable)
+        setDescription(''); // Ajouter ceci
         setId(null);                // Réinitialise l'ID de l'expérience
         setSelectedExperience(null); // Réinitialise l'expérience sélectionnée
         Load();                     // Recharge les données ou effectue toute action nécessaire
@@ -249,41 +253,18 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
                 />
             </div>
 
-            
-{/* 
             <div className="form-group">
-                <label htmlFor="fileInput">Logo ou Image</label>
-                {image ? (
-                    <div className="form-group d-flex align-items-center justify-content-center">
-                        <label htmlFor="fileInput" className="file-input-label image-selected">
-                            <img 
-                                src={image instanceof File ? URL.createObjectURL(image) : `${import.meta.env.VITE_API_BASE_URL}/storage/${image}`} 
-                                alt="Aperçu de l'image" 
-                                className="image-preview"
-                            />
-                            <input 
-                                type="file" 
-                                id="fileInput" 
-                                className="form-control-file" 
-                                onChange={(e) => setImage(e.target.files[0])} 
-                            />
-                        </label>
-                    </div>
-                ) : (
-                    <div className="form-group d-flex align-items-center justify-content-center">
-                        <label htmlFor="fileInput" className="file-input-label">
-                            <span className="icon">+</span>
-                            <small>PNG, JPG, GIF jusqu'à 10MB</small>
-                            <input 
-                                type="file" 
-                                id="fileInput" 
-                                className="form-control-file" 
-                                onChange={(e) => setImage(e.target.files[0])} 
-                            />
-                        </label>
-                    </div>
-                )}
-            </div> */}
+                <label htmlFor="description">Description</label>
+                <textarea 
+                    id="description" 
+                    className="form-control" 
+                    placeholder="Description de l'expérience" 
+                    value={description} 
+                    onChange={(e) => setDescription(e.target.value)} 
+                    rows="4"
+                    required 
+                />
+            </div>
 
             <div className="modal-footer">
                 <button type="submit" className="btn-blue">
@@ -366,6 +347,19 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
                     className="form-control" 
                     value={date_fin} 
                     onChange={(e) => setDate_fin(e.target.value)} 
+                    required 
+                />
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="description">Description</label>
+                <textarea 
+                    id="description" 
+                    className="form-control" 
+                    placeholder="Description de l'expérience" 
+                    value={description} 
+                    onChange={(e) => setDescription(e.target.value)} 
+                    rows="4"
                     required 
                 />
             </div>
@@ -457,6 +451,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
       <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date de début</th>
       <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date de fin</th>
       <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rôle</th>
+      <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
       <th className="text-secondary opacity-7">Action</th>
     </tr>
   </thead>
@@ -495,6 +490,12 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
             </p>
           </td>
 
+          <td>
+            <p className="text-xs font-weight-bold mb-0">
+              {experience.description || 'Aucune description'}
+            </p>
+          </td>
+
           <td className="align-middle">
             <div className="modal-footer">
             <button className="btn-blue me-2" onClick={() => handleEditClick(experience)}>
@@ -509,7 +510,7 @@ const [isModalOpen, setIsModalOpen] = useState(false); // Indique si la modale e
       ))
     ) : (
       <tr>
-        <td colSpan="6" style={{ textAlign: 'center' }}>Aucun résultat trouvé</td>
+        <td colSpan="7" style={{ textAlign: 'center' }}>Aucun résultat trouvé</td>
       </tr>
     )}
   </tbody>
