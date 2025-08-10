@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect,useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axiosClient from '../axiosClient';  
@@ -231,6 +230,7 @@ const NavigationMenu = ({ setIsSidebarOpen }) => {
   { path: "/Gemini_api", icon: "fas fa-robot", label: "Assistant IA" },
   { path: "/langue", icon: "fas fa-language", label: "Langue" },
   { path: "/Formation", icon: "fas fa-chalkboard-teacher", label: "Formation" },
+  { path: "/all-my-logins", icon: "fas fa-key", label: "Mes Identifiants" },
   { path: "/facebook", icon: "fab fa-facebook", label: "Facebook" } // Ajout de Facebook
 ].map((item, index) => (
   <li className="pc-item" key={index}>

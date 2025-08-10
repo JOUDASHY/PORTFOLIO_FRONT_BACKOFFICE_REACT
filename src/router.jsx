@@ -44,6 +44,8 @@ import ForgotPassword from './auth/ForgotPassword.jsx'; // Assurez-vous que le c
 import ResetPassword from './auth/ResetPassword.jsx'; // Assurez-vous que le chemin est correct
 import SetPassword from './auth/SetPassword.jsx'; // Assurez-vous que le chemin est correct
 
+import AllMyLogins from './components/AllMyLogins.jsx'; // Importez le nouveau composant
+
 // import Call_user from "./components/Call_user"; // Chemin vers Call_video.jsx
 
 const RoutesWithAuth = () => {
@@ -58,7 +60,6 @@ const RoutesWithAuth = () => {
   return (
     <Routes>
       {/* Routes pour l'admin */}
-     
         <>
           <Route path="AllEmails" element={<AllEmails user={user} />} />
           <Route path="NotificationsList" element={<NotificationsList user={user} />} />
@@ -75,7 +76,7 @@ const RoutesWithAuth = () => {
           <Route path="Competence" element={<Competence user={user} />} />
           <Route path="Education" element={<Education user={user} />} />
           <Route path="Award" element={<Award user={user} />} />
-          {/* <Route path="CVDesign" element={<CVDesign user={user} />} /> */}
+          <Route path="all-my-logins" element={<AllMyLogins user={user} />} /> {/* Nouvelle route ajoutée */}
           
           
           
